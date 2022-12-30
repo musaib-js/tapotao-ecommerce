@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Cancel Order{% endblock title %} {% block main-content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h4>Order Cancellation</h4>
+            <hr> {% for item in ordertobecancelled %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5>Product: {{item.product.title}}</h5>
+                    <p>Quantity: {{item.quantity}}</p>
+                    <p class="fw-bold">Price: {{item.total_cost}}</p>
+                </div>
+            </div>
+            
+            <small>Terms and Conditions: The product cost only shall be refunded. Delivery charges are non-refundable.</small>
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+            <hr>
+                 <div class="container">
+              <a href  = "/cancellationdone/{{item.id}}"><button class="btn btn-place-order-two mt-3 px-5 fw-bold">Cancel Order</button> </a>
+                 </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock main-content %} {% block payment-gateway %}
+{% endblock payment-gateway %}

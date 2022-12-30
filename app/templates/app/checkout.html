@@ -1,0 +1,69 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Checkout{% endblock title %} {% block main-content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h4>Order Summary</h4>
+            <hr> {% for item in cart_items %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5>Product: {{item.product.title}}</h5>
+                    <p>Quantity: {{item.quantity}}</p>
+                    <p class="fw-bold">Price: {{item.total_cost}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="card mb-2">
+                <div class="card-body">
+            <div> <p class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">Have a coupon?</p><span><form method = "POST" id = "coupon-form"> <input class = "form-control" name = "coupon" id = "coupon" required> <small class = "my-2" style = "color:red;"> {% for x in messages %}{{x}}{% endfor %}</small> <br> <span><input class="btn btn-sm btn-remove my-2" type="submit" value="Apply">{% csrf_token %}</form></span></div>
+            <p class="fw-bold">Total Cost + Delivery Charges = {{totalcost}}</p>
+            <BR>
+            <small>(Rs. 50/KG Delivery Charge)</small>
+
+        </div>
+        
+    </div>
+            <hr>
+            <small>Terms and Conditions: Order once placed can be cancelled only if the cancellation request is submitted within 15 minutes of the order placement. Order for restaurant food can not be cancelled.</small>
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+            <h4>Select Shipping Address</h4>
+            <hr>
+            <form action="/paymentdone" id="myform" enctype="multipart/form-data">
+                {% for ad in add %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5>{{ad.name}}</h5>
+                        <p>{{ad.locality}}, {{ad.city}}, {{ad.state}}- {{ad.zipcode}}</p>
+                    </div>
+                </div>
+                <div class="form-check mt-2 mb-5">
+                    <input class="form-check-input" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{ad.id}}" checked>
+                    <label class="form-check-label fw-bold" for="custadd{{forloop.counter}}">
+            Address: {{ forloop.counter }} </label>
+                </div>
+                {% endfor %}
+                
+                    <input type = "hidden" class = "form-control" name = "couponapplied" id = "coupon" value = "{{couponapplied}}">
+                    <label for = "form-control"> Please upload the payment screenshot </label>
+                    <input name = "form-control" class = "form-control" type = "file"/>
+                    
+                </div>
+                {% comment %} <div class = "form-control">
+                    
+                </div> {% endcomment %}
+                 <div class="container">
+                    <button type="submit" class="btn btn-place-order-two mt-3 px-5 fw-bold">Place Order</button>
+                  </div> 
+                {% comment %} <div class="border p-3">
+                    {% comment %} <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold" id="continuebtn">Continue</button> 
+                    <!-- Set up a container element for the button -->
+                    <p class="fw-bold">Payment Options:</p>
+                    <div id="paypal-button-container"></div>
+                </div> {% endcomment %}    
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock main-content %} {% block payment-gateway %}
+{% endblock payment-gateway %}

@@ -1,0 +1,71 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-6 text-center align-self-center">
+   <img src="{{product.product_image.url}}" alt="" class="img-fluid img-thumbnail">
+  </div>
+  <div class="col-sm-5 offset-sm-1">
+   <h2>{{product.title}}</h2>
+   <hr>
+   <p>{{product.description}}</p> <br>
+   <h4>Rs. {{product.discounted_price}} <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small></h4> <br>
+
+   {% if user.is_authenticated  %}
+    {% if item_already_in_cart  %}
+     <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 ms-4">Go to Cart</a>
+    {% else %}
+     <form action="/add-to-cart" class="d-inline">
+      <input type="hidden" name="prod_id" value="{{product.id}}" id="prod_id">
+      <button type="submit" class="btn btn-buynow shadow px-5 py-2">Add to Cart</button>
+     </form>
+    {% endif %}
+   {% endif %}
+
+   {% if not request.user.is_authenticated %}
+     <form action="/add-to-cart" class="d-inline">
+      <input type="hidden" name="prod_id" value="{{product.id}}" id="prod_id">
+      <button type="submit" class="btn btn-buynow shadow px-5 py-2">Add to Cart</button>
+     </form>
+   {% endif %}
+
+
+   <h5 class="mt-5">Product Reviews</h5>
+   <ul>
+    {% for r in ratings %}
+    <li>{{r.rating}}</li>
+    {% endfor %}
+   </ul>
+    <form action="/submitrating/{{product.id}}/" method="post" novalidate class="shadow p-5">
+      {% if messages %}
+      {% for message in messages %}
+       <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}}</p>
+      {% endfor %}
+      {% endif %}
+       {% csrf_token %}
+       {% for fm in form %}
+        <div class="form-group mb-3">
+        Submit Review{{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+        </div>
+       {% endfor %}
+       <input type="submit" value="Submit" class="btn btn-search">
+       {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+         <p class="alert alert-danger my-3">{{error}}</p>
+        {% endfor %}
+       {% endif %}
+      </form>
+   {% comment %} <a href="{% url 'checkout' %}" class="btn btn-buynow shadow px-5 py-2 ms-4">Buy Now</a> {% endcomment %}
+   <h5 class="mt-5">Available Offers</h5>
+   <ul>
+    <li>Hurray! We are providing free delivery</li>
+    <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+    <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+    <li>Partner Offer ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+   </ul>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
