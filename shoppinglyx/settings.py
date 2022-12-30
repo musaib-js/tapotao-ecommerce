@@ -15,8 +15,11 @@ DEBUG = True
 
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['www.nectar-infotech.herokuapp.com', 'nectar-infotech.herokuapp.com', 'https://nectar-infotech.herokuapp.com']
+<<<<<<< HEAD
 
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+=======
+>>>>>>> 91d9f5b8be2f6da582e402182ba793809b7c806f
 # Application definition
 
 INSTALLED_APPS = [
