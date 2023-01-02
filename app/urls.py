@@ -21,6 +21,7 @@ urlpatterns = [
     path('cancelorder/<int:id>', views.cancelorder, name = "cancelorder"),
     path('cancellationdone/<int:id>', views.cancellationdone, name = "cancellationdone"),
     path('submitrating/<int:pk>/', views.SubmitRating.as_view(), name = "submit-rating"),
+    path('search', views.search, name="search"),
 
     # URLS FOR PRODUCT PAGES
  

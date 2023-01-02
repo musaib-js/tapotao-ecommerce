@@ -459,3 +459,17 @@ def bulk(request):
 
 def privacypolicy(request):
 	return render(request, 'app/privacypolicy.html')
+
+def search(request):
+    query=request.GET['query']
+    if len(query)>78:
+        allProducts=Product.objects.none()
+    else:
+        allProductsTitle= Product.objects.filter(title__icontains=query)
+        allProductsAuthor= Product.objects.filter(brand__icontains=query)
+        allProductsContent =Product.objects.filter(category__icontains=query)
+        allProducts=  allProductsTitle.union(allProductsContent, allProductsAuthor)
+    if allProducts.count()==0:
+        messages.warning(request, "No search results found. Please refine your query.")
+    params={'allProducts': allProducts, 'query': query}
+    return render(request, 'app/search.html', params)

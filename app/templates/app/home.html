@@ -4,8 +4,8 @@
 
 {% block searchbar %}
         <div class = "container" style = "margin-top: 9px; margin-bottom: 9px;">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="What are you looking for?" aria-label="Search">
+            <form class="d-flex" action = "/search">
+                <input class="form-control me-2" name = "query" type="search" placeholder="What are you looking for?" aria-label="Search">
                 <button class="btn btn-search" type="submit">Find</button>
             </form>
         </div>
