@@ -386,16 +386,21 @@ def footwear(request, data=None):
 			footwear = Product.objects.filter(category='FW').filter(brand=data)
 	return render(request, 'app/footwear.html', {'footwear':footwear, 'totalitem':totalitem})
 
-# View for kashmiri spices wear
-def kashmirispices(request, data=None):
+# View for Rice
+def rice(request):
 	totalitem = 0
 	if request.user.is_authenticated:
 		totalitem = len(Cart.objects.filter(user=request.user))
-	if data==None :
-			kashmirispices = Product.objects.filter(category='KS')
-	elif data == 'redchillipowder' or data == 'fenugreekleaves' or data == 'fenugreekseeds':
-			kashmirispices = Product.objects.filter(category='KS').filter(brand=data)
-	return render(request, 'app/kashmirispices.html', {'kashmirispices':kashmirispices, 'totalitem':totalitem})
+		rice = Product.objects.filter(category='RC')
+	return render(request, 'app/rice.html', {'rice':rice, 'totalitem':totalitem})
+
+# View for Rajma
+def rajma(request):
+	totalitem = 0
+	if request.user.is_authenticated:
+		totalitem = len(Cart.objects.filter(user=request.user))
+		rajma = Product.objects.filter(category='Rajma')
+	return render(request, 'app/rajma.html', {'rajma':rajma, 'totalitem':totalitem})
 
 class CustomerRegistrationView(View):
     def get(self, request):

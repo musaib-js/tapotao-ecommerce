@@ -67,9 +67,10 @@ urlpatterns = [
     path('restaurantfood/<slug:data>', views.restaurantfood, name = "restaurantfooddata"),
 
    
-    # URL for Kashmiri Special
-    path('kashmirispices/', views.kashmirispices, name  = "kashmirispices"),
-    path('kashmirispices/<slug:data>', views.kashmirispices, name = "kashmirispicesdata"),
+    # URL for Jammu Special - Rice and Rajma
+    path('rice/', views.rice, name  = "rice"),
+    path('rajma/', views.rajma, name  = "rajma"),
+    # path('kashmirispices/<slug:data>', views.kashmirispices, name = "kashmirispicesdata"),
 
 
 

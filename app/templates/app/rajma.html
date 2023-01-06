@@ -1,20 +1,20 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Kashmiri Spices{% endblock title %}
+{% block title %}Rajma{% endblock title %}
 {% block main-content %}
 <div class="container my-5">
  <div class="row">
   <div class="col-sm-3">
-   <div class="list-group">
+   {% comment %} <div class="list-group">
      <a href="{% url 'kashmirispices' %}" class="list-group-item list-group-item-action" aria-current="true">All</a>
      <a href="{% url 'kashmirispicesdata' 'redchillipowder'  %}" class="list-group-item list-group-item-action" aria-current="true">Red Chilli Powder</a>
      <a href="{% url 'kashmirispicesdata' 'fenugreekleaves'  %}" class="list-group-item list-group-item-action">Fenugreek Leaves</a>
      <a href="{% url 'kashmirispicesdata' 'fenugreekseeds'  %}" class="list-group-item list-group-item-action">Fenugreek Seeds</a>
-   </div>
+   </div> {% endcomment %}
   </div>
   <div class="col-sm-8">
    <div class="row">
-    {% for product in kashmirispices %}
+    {% for product in rajma %}
      <div class="col-sm-4 text-center mb-4">
       <a href="{% url 'product-detail' product.id %}" class="btn">
        <div class="item">

@@ -55,27 +55,14 @@ class Customer(models.Model):
 
 
 CATEGORY_CHOICES = (
- ('M', 'Mobile'),
- ('L', 'Laptop'),
- ('EL', 'Electronics'),
- ('HE', 'Hearing and Music'),
- ('WA', 'Watches'),
- ('TW', 'Top Wear'),
- ('BW', 'Bottom Wear'),
- ('BP', 'Beauty Products'),
- ('FW', 'Footwear'),
- ('KW', 'Kids Wear'),
- ('KC', 'Knitted Clothes'),
- ('FR', 'Frozen and Chilled'),
- ('B', 'Bakery'),
- ('CA', 'Car Accessories'),
- ('RF', 'Restaurant Food'),
- ('GR', 'Groceries'), 
- ('BK', 'Bakeries'),
- ('RF', 'Restaurant Food'),
- ('KS', 'Kashmiri Spices'),
+ ('WA', 'Walnuts'),
+ ('AM', 'Almonds'),
+ ('RA', 'Raisins'),
+ ('CA', 'Cashew'),
+ ('RC', 'Rice'),
+ ('PU', 'Pulses'),
  ('RP', 'Rice and Pulses'),
- ('DF', 'Dry Fruits')
+ ('DF', 'Dry Fruits'),
 )
 class Product(models.Model):
  title = models.CharField(max_length=100)
